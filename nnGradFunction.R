@@ -26,11 +26,11 @@ nnGradFunction <- function(nn_params, hidden_layer_size, X, y, lambda){
   #hh <- t(a2) # 1 x m
   
   theta1Without1 <- Theta1[,2:input_layer_size]
-  theta2Without1 <- Theta2[,2:hidden_layer_size+1]
+  theta2Without1 <- Theta2[,2:(hidden_layer_size+1)]
   
   Theta1_grad <- matrix(0, nrow=hidden_layer_size, ncol=input_layer_size)
-  Theta2_grad <- matrix(0, nrow=1, ncol=hidden_layer_size+1)
-  
+  Theta2_grad <- matrix(0, nrow=1, ncol=(hidden_layer_size+1))
+ 
   #backprop learning
   for (t in 1:m){
     a1 <- X[t,] # 257 x 1 vector, i.e. n+1 x 1; in R this returns a vector which is 257 x 1
@@ -61,5 +61,6 @@ nnGradFunction <- function(nn_params, hidden_layer_size, X, y, lambda){
     x
   }
   grad <- c(sapply(Theta1_grad, tmpFunc), sapply(Theta2_grad, tmpFunc))
+  
   grad
 }
