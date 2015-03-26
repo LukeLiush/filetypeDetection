@@ -6,8 +6,10 @@ Multi-class classification is challenging, because it is computational expensive
 As an example, grb or grib files are one of the unknown files, the content based learning research is targeting at the grb file identification.
 
 ### Algorithms
-In this research, Neural network and Linear logistic regression are being implemented to classify grb file type from other file types. Please note, one of the challenges is that if predicting non-grb file types, it is better there are as many negative training examples as possible so as to train the model, however the size of negative training examples(i.e. non-grb files) can be enormous, therefore it might be better we are given a set of types to be classified and we build a model that can work on those file type classification.
-The input is byte histogram of a file and the output is a binary decision that predict whether the file is a grb type or not a grb type (note again, if we are given a set of types to be classified, the problem will be much simplified and the algorithm efficiency will probably be improved as the problem domain is narrowed and bounded).
+In this research, Neural network and Linear logistic regression are being implemented to classify grb file type from other file types. Please note, one of the challenges is that if predicting non-grb file types, it is better there are as many negative training examples as possible to feed and impress the model while training, however the size of negative training examples(i.e. non-grb files) is enormous, therefore if possible, it might always be better our model is bounded by a set of types to be classified and the model only works on those file type classification.
+The input is byte histogram of a file and the output is a binary decision that predict whether the file is a grb type or not a grb type (note again, if we are given a set of types to be classified, the problem will be much simplified and the algorithm efficiency will also probably be improved as the problem domain is narrowed and bounded).
+
+### Dataset
 The positive training examples are collected from the AMD polar web sites (*.gsfc.nasa.gov). i.e. ftp://hydro1.sci.gsfc.nasa.gov/data/
 The negative training examples are collected from the following i.e. http://digitalcorpora.org/corp/files/govdocs1/zipfiles/ 
 
