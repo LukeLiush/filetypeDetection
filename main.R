@@ -17,6 +17,7 @@ source('randInitWeights.R')
 source('checkNNGradients.R')
 source('debugInitializeWeights.R')
 source('computeNumericalGradient.R')
+source('myfunctions.R')
 library(optimx)
 
 ##############################
@@ -35,8 +36,8 @@ m <- dim(X)[1]
 n <- dim(X)[2]
 
 # reduce the size of training set
-X <- X[3500:m,]
-y <- y[3500:m]
+X <- X[0:m,]
+y <- y[0:m]
 
 hidden_layer_size <- 2
 lambda <- 0
@@ -108,5 +109,6 @@ print(sprintf('Testing Accuracy: %f', mean((pred == ytest)) * 100))
 #lines(xx,yyv, col='blue')
 
 
-
+#output the model
+exportNNParams(outputfile='tika.model',nn_params, 256, hidden_layer_size, 1, testcost)
 

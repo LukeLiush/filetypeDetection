@@ -21,7 +21,7 @@ trainNN <- function(hisize, X, y, lambda){
 	mycostfunc <- costfunc(xx=X, yy=y, lambda=lambda)
 	mygradfunc <- gradfunc(xx=X, yy=y, lambda=lambda)
 	#result <- optimx(par=params, fn=mycostfunc, gr=mygradfunc, control=list( maxit=400, all.methods=T))
-	result <- optimx(par=params, fn=mycostfunc, gr=mygradfunc,  method='BFGS', control=list( maxit=400))
+	result <- optimx(par=params, fn=mycostfunc, gr=mygradfunc,  method='BFGS', control=list( maxit=500))
 	result
 }
 
