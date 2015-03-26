@@ -10,8 +10,10 @@ Multi-class classification is chanllenging, because it is computational expensiv
 As an example, grb or grib files are one of the unknown files, The content based learnign research is targeting at the grb file identificaiton.
 
 ##Algorithms
-In this reserach, Neural network and Linear logistic regression are implemented to classify grb file type from other file types.
-The input is byte histgram of a file and the output is a binary desicion that predict whether the the file is a grb type or not a grb type.
+In this reserach, Neural network and Linear logistic regression are being implemented to classify grb file type from other file types. Please note, one of the challenges is that if predicting non-grb file types, it is better there are as many negative training examples as possible so as to train the model, however the size of negative training examples(i.e. non-grb files) can be enormous, therefore it might be better we are given a set of types to be classified and we build a model that can work on those file type classification.
+
+
+The input is byte histgram of a file and the output is a binary desicion that predict whether the the file is a grb type or not a grb type (note again, if we are given a set of types to be classified, the problem will be much simplied and the algorithm efficiency will probably be improved as the problem domain is narrowed and bounded).
 
 The positive training examples are collected from the AMD polar web sites (*.gsfc.nasa.gov).
   i.e. ftp://hydro1.sci.gsfc.nasa.gov/data/
@@ -20,11 +22,20 @@ The negative training examples are collected from the following
   i.e. http://digitalcorpora.org/corp/files/govdocs1/zipfiles/  
 
 Prepocessing.
+1) read byte content of the file
+    build byte histogram. 
+    build frequence by dividing each bin value with the max count of occurance to have each bin value to fall in the range between 0 and 1.
+    
+2) square the root to enhance the frequence distribution; as in some files some bytes have higher frequencies whereas other bytes are less frequent, or in a critical sitution, some files have only one or two bins that occupy the majority of the count, this makes a large gap bettween the most frequent and less frequent, the solution is to apply a compounding function - A law or u law; square-rooting the bin values also provide the same effect, so by considering the compuational cost, the square the bin value is chosen in place of A law or u law.
 
 
+Algorithm 
+Neural networks.
+The simple idea is that machine learning techniques such as neural network is used to classify the file types based on byte frequency histogram. The input the preprocessed histogram and the output simply is a yes/no (1 or 0);
+With neural network, we can actually have a probability that might tell how likely it believes a given input histogram is a grb or non-grb, again it is worth stressing that no-grb is a huge class to be classified, we might need to have a s many negative training examples as possible, but if we know what types we are dealing with, the problem might be further simplified;
 
-More detail with the implementation is coming soon.
 
-
+The ultimate goal with this research:
+eventually, the feature of content based file type detection is being considered to be added as part of tika libarary.
 
 
