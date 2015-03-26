@@ -11,11 +11,13 @@ The input is byte histogram of a file and the output is a binary decision that p
 The positive training examples are collected from the AMD polar web sites (*.gsfc.nasa.gov). i.e. ftp://hydro1.sci.gsfc.nasa.gov/data/
 The negative training examples are collected from the following i.e. http://digitalcorpora.org/corp/files/govdocs1/zipfiles/ 
 
-###Preprocessing. 
-
+###Preprocessing
 /1) Read byte content of the file build byte histogram. build frequency by dividing each bin value with the max count of occurrence to have each bin value to fall in the range between 0 and 1.
 
 /2) square the root to enhance the frequency distribution; as in some files some bytes have higher frequencies whereas other bytes are less frequent, or in a critical situation, some files have only one or two bins that occupy the majority of the count, this makes a large gap between the most frequent and less frequent, the solution is to apply a compounding function - A law or u law; square-rooting the bin values also provide the same effect, so by considering the computational cost, the square the bin value is chosen in place of A law or u law.
-Algorithm Neural networks. 
+
+###Algorithm Neural networks
 The simple idea is that machine learning techniques such as neural network is used to classify the file types based on byte frequency histogram. The input the preprocessed histogram and the output simply is a yes/no (1 or 0); With neural network, we can actually have a probability that might tell how likely it believes a given input histogram is a grb or non-grb, again it is worth stressing that no-grb is a huge class to be classified, we might need to have a s many negative training examples as possible, but if we know what types we are dealing with, the problem might be further simplified;
-The ultimate goal with this research: eventually, the feature of content based file type detection is being considered to be added as part of Tika library.
+
+###The ultimate goal with this research: 
+eventually, the feature of content based file type detection is being considered to be added as part of Tika library.
